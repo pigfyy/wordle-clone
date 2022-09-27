@@ -47,6 +47,10 @@ function makeKeyboard() {
             } else {
               textArea.value = textArea.value + letter;
             }
+            letterToAdd.style.filter = "brightness(0.7)";
+            setTimeout(() => {
+              letterToAdd.style.filter = "brightness(1)";
+            }, 50);
           });
         }
 
