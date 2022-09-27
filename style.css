@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+}
+* body {
+  background-color: rgb(37, 37, 37);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+* body .container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  max-width: 700px;
+  justify-content: space-around;
+  height: 100vh;
+}
+* body .container #input {
+  width: 100%;
+  margin: 30px;
+  color: black;
+}
+* body .container .keyboard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+* body .container .keyboard .keyboard-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+* body .container .keyboard .keyboard-line .keyboard-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+  margin: 4px 3px;
+  padding: 3px;
+  width: 2.5rem;
+  height: 60px;
+  border-radius: 3px;
+  border: none;
+}
+* body .container .keyboard .keyboard-line .keyboard-key .keyboard-key:hover {
+  filter: brightness(0.8);
+}
+* body .container .keyboard .keyboard-line .keyboard-symbols {
+  width: 3.35em;
+}
+* body .container .keyboard [data-row=second-row] {
+  width: 90%;
+}/*# sourceMappingURL=style.css.map */

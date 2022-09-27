@@ -1,0 +1,71 @@
+$background-color: rgb(37, 37, 37);
+$text-color: rgb(255, 255, 255);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif;
+  color: $text-color;
+  font-size: 20px;
+
+  body {
+    background-color: $background-color;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100vw;
+      max-width: 700px;
+      justify-content: space-around;
+      height: 100vh;
+
+      #input {
+        width: 100%;
+        margin: 30px;
+        color: black;
+      }
+
+      .keyboard {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .keyboard-line {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+
+          .keyboard-key {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: grey;
+            margin: 4px 3px;
+            padding: 3px;
+            width: 2.5rem;
+            height: 60px;
+            border-radius: 3px;
+            border: none;
+
+            .keyboard-key:hover {
+              filter: brightness(0.8);
+            }
+          }
+          .keyboard-symbols {
+            width: 3.35em;
+          }
+        }
+        [data-row="second-row"] {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
