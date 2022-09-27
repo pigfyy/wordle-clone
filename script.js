@@ -25,36 +25,33 @@ function makeKeyboard() {
     makeRow();
     function makeRow() {
       row.forEach((letter) => {
-        const letterToAdd = document.createElement("button");
-        letterToAdd.innerText = letter;
-        letterToAdd.classList.add("keyboard-key");
-        letterToAdd.setAttribute("keyboard-key", letter);
+        const letterToAddEl = document.createElement("button");
+        letterToAddEl.innerText = letter;
+        letterToAddEl.classList.add("keyboard-key");
+        letterToAddEl.setAttribute("keyboard-key", letter);
         if (letter.length > 1) {
-          letterToAdd.classList.add("material-symbols-sharp");
-          letterToAdd.classList.add("keyboard-symbols");
+          letterToAddEl.classList.add("material-symbols-sharp");
+          letterToAddEl.classList.add("keyboard-symbols");
         }
 
         onClick();
         function onClick() {
-          letterToAdd.addEventListener("click", (e) => {
-            const textArea = document.querySelector("#input");
-            e.preventDefault();
+          letterToAddEl.addEventListener("click", () => {
             if (letter === "backspace") {
-              const str = textArea.value;
-              textArea.value = str.slice(0, -1);
+              // on backspace
             } else if (letter === "keyboard_return") {
-              alert("no function yet");
+              // return word
             } else {
-              textArea.value = textArea.value + letter;
+              // add character
             }
-            letterToAdd.style.filter = "brightness(0.7)";
+            letterToAddEl.style.filter = "brightness(0.7)";
             setTimeout(() => {
-              letterToAdd.style.filter = "brightness(1)";
-            }, 50);
+              letterToAddEl.style.filter = "brightness(1)";
+            }, 30);
           });
         }
 
-        line.appendChild(letterToAdd);
+        line.appendChild(letterToAddEl);
       });
     }
   });
@@ -62,7 +59,6 @@ function makeKeyboard() {
   keyboardClick();
   function keyboardClick() {
     document.addEventListener("keydown", (letter) => {
-      console.log(letter.key);
       let key = letter.key;
       if (!lettersOnly()) {
         return;
@@ -70,14 +66,12 @@ function makeKeyboard() {
 
       const textArea = document.querySelector("#input");
       if (key === "Backspace") {
-        const str = textArea.value;
-        textArea.value = str.slice(0, -1);
+        // on backspace
       } else if (key === "Enter") {
-        alert("no function yet");
+        // return word
       } else {
-        textArea.value = textArea.value + key;
+        // add character
       }
-
       function lettersOnly() {
         var charCode = letter.keyCode;
 
@@ -90,5 +84,23 @@ function makeKeyboard() {
         else return false;
       }
     });
+  }
+}
+
+makeGameBoard();
+function makeGameBoard() {
+  const gameContainerEl = document.querySelector(".game-board");
+  createBlocks();
+  function createBlocks() {
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 5; j++) {
+        const blockEl = document.createElement("div");
+        blockEl.classList.add("game-block");
+        blockEl.setAttribute("game-row", i + 1);
+        blockEl.setAttribute("game-col", j + 1);
+        blockEl.innerText = "A";
+        gameContainerEl.appendChild(blockEl);
+      }
+    }
   }
 }

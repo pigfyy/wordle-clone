@@ -21,10 +21,24 @@
   justify-content: space-around;
   height: 100vh;
 }
-* body .container #input {
-  width: 100%;
-  margin: 30px;
-  color: black;
+* body .container .game-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  aspect-ratio: 1/1.1;
+  width: 95%;
+  min-height: 400px;
+  max-width: 400px;
+}
+* body .container .game-board .game-block {
+  aspect-ratio: 1/1;
+  border: 2px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400%;
+  max-height: 400%;
+  font-size: 30px;
 }
 * body .container .keyboard {
   width: 100%;
