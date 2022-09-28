@@ -1,5 +1,6 @@
-makeKeyboard();
+let currentRow = 0;
 
+makeKeyboard();
 function makeKeyboard() {
   const firstRow = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const secondRow = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
@@ -36,13 +37,14 @@ function makeKeyboard() {
 
         onClick();
         function onClick() {
-          letterToAddEl.addEventListener("click", () => {
+          letterToAddEl.addEventListener("mouseup", () => {
+            console.log("hi");
             if (letter === "backspace") {
-              // on backspace
+              removeLetter();
             } else if (letter === "keyboard_return") {
-              // return word
+              nextRow();
             } else {
-              // add character
+              addLetter(letter);
             }
             letterToAddEl.style.filter = "brightness(0.7)";
             setTimeout(() => {
@@ -63,22 +65,20 @@ function makeKeyboard() {
       if (!lettersOnly()) {
         return;
       }
-
-      const textArea = document.querySelector("#input");
       if (key === "Backspace") {
-        // on backspace
+        removeLetter();
       } else if (key === "Enter") {
-        // return word
+        nextRow();
       } else {
-        // add character
+        addLetter(key);
       }
       function lettersOnly() {
         var charCode = letter.keyCode;
-
         if (
           (charCode > 64 && charCode < 91) ||
           (charCode > 96 && charCode < 123) ||
-          charCode == 8
+          charCode == 8 ||
+          charCode == 13
         )
           return true;
         else return false;
@@ -98,9 +98,60 @@ function makeGameBoard() {
         blockEl.classList.add("game-block");
         blockEl.setAttribute("game-row", i + 1);
         blockEl.setAttribute("game-col", j + 1);
-        blockEl.innerText = "A";
         gameContainerEl.appendChild(blockEl);
       }
     }
   }
+}
+
+function addLetter(c) {
+  const gameBlockEls = document.querySelectorAll(".current-row");
+  for (let i = 0; i < gameBlockEls.length; i++) {
+    if (!gameBlockEls[i].classList.contains("filled")) {
+      gameBlockEls[i].innerText = c;
+      gameBlockEls[i].classList.add("filled");
+      break;
+    }
+  }
+}
+
+function removeLetter() {
+  const gameBlockEls = document.querySelectorAll(".current-row.filled");
+  if (gameBlockEls.length === 0) return;
+  gameBlockEls[gameBlockEls.length - 1].innerText = "";
+  gameBlockEls[gameBlockEls.length - 1].classList.remove("filled");
+}
+
+nextRow();
+function nextRow() {
+  if (!isRowFilled()) return;
+  currentRow++;
+  setCurrentRow(currentRow);
+}
+
+function isRowFilled() {
+  const gameBlockEls = document.querySelectorAll(".current-row");
+  let isFilled = true;
+  gameBlockEls.forEach((gameBlockEl) => {
+    if (!gameBlockEl.classList.contains("filled")) {
+      console.log("hi");
+      isFilled = false;
+    }
+  });
+  if (isFilled) return true;
+  return false;
+}
+
+function setCurrentRow(rowNum) {
+  const lastRowEls = document.querySelectorAll(".current-row");
+  lastRowEls.forEach((lastRowEl) => {
+    lastRowEl.classList.remove("current-row");
+  });
+
+  const gameBlockEls = document.querySelectorAll(".game-block");
+  gameBlockEls.forEach((gameBlockEl) => {
+    if (gameBlockEl.getAttribute("game-row") == rowNum) {
+      gameBlockEl.classList.add("current-row");
+    }
+  });
 }
