@@ -7,7 +7,7 @@
   font-size: 20px;
 }
 * body {
-  background-color: rgb(37, 37, 37);
+  background-color: #121213;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -32,13 +32,27 @@
 }
 * body .container .game-board .game-block {
   aspect-ratio: 1/1;
-  border: 2px solid grey;
+  border: 2px solid #3a3a3c;
   display: flex;
   align-items: center;
   justify-content: center;
   max-width: 400%;
   max-height: 400%;
-  font-size: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 2px;
+}
+* body .container .game-board .current-row {
+  border-color: #565758;
+}
+* body .container .game-board .miss {
+  background-color: #3a3a3c;
+}
+* body .container .game-board .present {
+  background-color: #c9b458;
+}
+* body .container .game-board .correct {
+  background-color: #538d4e;
 }
 * body .container .keyboard {
   width: 100%;

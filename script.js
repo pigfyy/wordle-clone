@@ -1,4 +1,12 @@
 let currentRow = 0;
+let word;
+
+getWord();
+function getWord() {
+  const words = ["apple", "great", "crank", "floss", "irate", "bread"];
+  word = words[Math.floor(Math.random() * words.length)].toUpperCase();
+}
+console.log(word);
 
 makeKeyboard();
 function makeKeyboard() {
@@ -38,7 +46,6 @@ function makeKeyboard() {
         onClick();
         function onClick() {
           letterToAddEl.addEventListener("mouseup", () => {
-            console.log("hi");
             if (letter === "backspace") {
               removeLetter();
             } else if (letter === "keyboard_return") {
@@ -104,11 +111,13 @@ function makeGameBoard() {
   }
 }
 
+// on key press
+
 function addLetter(c) {
   const gameBlockEls = document.querySelectorAll(".current-row");
   for (let i = 0; i < gameBlockEls.length; i++) {
     if (!gameBlockEls[i].classList.contains("filled")) {
-      gameBlockEls[i].innerText = c;
+      gameBlockEls[i].innerText = c.toUpperCase();
       gameBlockEls[i].classList.add("filled");
       break;
     }
@@ -127,31 +136,63 @@ function nextRow() {
   if (!isRowFilled()) return;
   currentRow++;
   setCurrentRow(currentRow);
+  checkPreviousRow();
+
+  function setCurrentRow(rowNum) {
+    const gameBlockEls = document.querySelectorAll(".game-block");
+    gameBlockEls.forEach((gameBlockEl) => {
+      if (gameBlockEl.getAttribute("game-row") == rowNum) {
+        gameBlockEl.classList.add("current-row");
+      } else if (gameBlockEl.getAttribute("game-row") == rowNum - 1) {
+        gameBlockEl.classList.remove("current-row");
+        gameBlockEl.classList.add("miss");
+      }
+    });
+  }
+  function isRowFilled() {
+    const gameBlockEls = document.querySelectorAll(".current-row");
+    let isFilled = true;
+    gameBlockEls.forEach((gameBlockEl) => {
+      if (!gameBlockEl.classList.contains("filled")) {
+        isFilled = false;
+      }
+    });
+    if (isFilled) return true;
+    return false;
+  }
 }
 
-function isRowFilled() {
-  const gameBlockEls = document.querySelectorAll(".current-row");
-  let isFilled = true;
-  gameBlockEls.forEach((gameBlockEl) => {
-    if (!gameBlockEl.classList.contains("filled")) {
-      console.log("hi");
-      isFilled = false;
-    }
-  });
-  if (isFilled) return true;
-  return false;
-}
+function checkPreviousRow() {
+  let wordArr = word.split("");
 
-function setCurrentRow(rowNum) {
-  const lastRowEls = document.querySelectorAll(".current-row");
-  lastRowEls.forEach((lastRowEl) => {
-    lastRowEl.classList.remove("current-row");
-  });
+  firstCheck();
+  function firstCheck() {
+    const previousRowEls = document.querySelectorAll(".miss");
+    previousRowEls.forEach((previousRowEl) => {
+      const letter = previousRowEl.innerText;
+      if (wordArr[previousRowEl.getAttribute("game-col") - 1] == letter) {
+        previousRowEl.classList.add("correct");
+        previousRowEl.classList.remove("miss");
+        wordArr[previousRowEl.getAttribute("game-col") - 1] = "0";
+      }
+    });
+  }
 
-  const gameBlockEls = document.querySelectorAll(".game-block");
-  gameBlockEls.forEach((gameBlockEl) => {
-    if (gameBlockEl.getAttribute("game-row") == rowNum) {
-      gameBlockEl.classList.add("current-row");
-    }
-  });
+  secondCheck();
+  function secondCheck() {
+    const previousRowEls = document.querySelectorAll(".miss");
+    previousRowEls.forEach((previousRowEl) => {
+      const letter = previousRowEl.innerText;
+      if (wordArr.includes(letter)) {
+        previousRowEl.classList.add("present");
+        previousRowEl.classList.remove("miss");
+
+        for (let i = 0; i < wordArr.length; i++) {
+          if (wordArr[i] == letter) {
+            wordArr[i] = "0";
+          }
+        }
+      }
+    });
+  }
 }

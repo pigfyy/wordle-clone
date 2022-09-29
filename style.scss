@@ -1,5 +1,10 @@
-$background-color: rgb(37, 37, 37);
+$background-color: #121213;
 $text-color: rgb(255, 255, 255);
+$border-color-active: #565758;
+$border-color-inactive: #3a3a3c;
+$color-correct: #538d4e;
+$color-present: #c9b458;
+$color-miss: #3a3a3c;
 
 * {
   margin: 0;
@@ -35,13 +40,31 @@ $text-color: rgb(255, 255, 255);
 
         .game-block {
           aspect-ratio: 1/1;
-          border: 2px solid grey;
+          border: 2px solid $border-color-inactive;
           display: flex;
           align-items: center;
           justify-content: center;
           max-width: 400%;
           max-height: 400%;
-          font-size: 30px;
+          font-size: 2rem;
+          font-weight: bold;
+          border-radius: 2px;
+        }
+
+        .current-row {
+          border-color: $border-color-active;
+        }
+
+        .miss {
+          background-color: $color-miss;
+        }
+
+        .present {
+          background-color: $color-present;
+        }
+
+        .correct {
+          background-color: $color-correct;
         }
       }
 
