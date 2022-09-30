@@ -134,9 +134,20 @@ function removeLetter() {
 nextRow();
 function nextRow() {
   if (!isRowFilled()) return;
-  currentRow++;
-  setCurrentRow(currentRow);
-  checkPreviousRow();
+
+  let str = "";
+  const gameBlockEls = document.querySelectorAll(".current-row");
+  gameBlockEls.forEach((gameBlockEl) => {
+    str += gameBlockEl.innerText;
+  });
+
+  isValidWord(str).then((response) => {
+    if (response == true || str == "") {
+      currentRow++;
+      setCurrentRow(currentRow);
+      checkPreviousRow();
+    }
+  });
 
   function setCurrentRow(rowNum) {
     const gameBlockEls = document.querySelectorAll(".game-block");
@@ -161,6 +172,8 @@ function nextRow() {
     return false;
   }
 }
+
+//
 
 function checkPreviousRow() {
   let wordArr = word.split("");
@@ -195,4 +208,38 @@ function checkPreviousRow() {
       }
     });
   }
+}
+
+isValidWord("hisdf").then((response) => {
+  if (response == true) {
+    console.log("true");
+  }
+});
+
+function isValidWord(word) {
+  let isValid;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "f1c6a7468bmsh3764809616fe5cap16bde0jsn6889be4cfcd0",
+      "X-RapidAPI-Host": "twinword-word-graph-dictionary.p.rapidapi.com",
+    },
+  };
+
+  return fetch(
+    `https://twinword-word-graph-dictionary.p.rapidapi.com/example/?entry=${word}`,
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      const res = response.result_msg;
+      if (res != "Success") {
+        return false;
+      } else {
+        return true;
+      }
+    })
+    .catch((err) => console.error(err));
+
+  return isValid;
 }
