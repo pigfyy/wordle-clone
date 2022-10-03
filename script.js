@@ -13083,16 +13083,35 @@ function removeLetter() {
   gameBlockEls[gameBlockEls.length - 1].classList.remove("filled");
 }
 
+let gameOver = false;
+
 nextRow();
 function nextRow() {
   if (currentRow !== 0) {
-    if (!isRowFilled() || !isRealWord()) {
+    if (gameOver || !isRowFilled() || !isRealWord()) {
       return;
     }
   }
   currentRow++;
   setCurrentRow(currentRow);
   checkPreviousRow();
+
+  if (isWin() === true && currentRow !== 1) {
+    addPopup("Brilliant!");
+
+    gameOver = true;
+
+    removeCurrentRow();
+    function removeCurrentRow() {
+      const gameBlockEls = document.querySelectorAll(".current-row");
+      gameBlockEls.forEach((gameBlock) => {
+        gameBlock.classList.remove("current-row");
+      });
+    }
+  }
+  if (currentRow > 6) {
+    if (!isWin()) addPopup(word);
+  }
 
   function setCurrentRow(rowNum) {
     const gameBlockEls = document.querySelectorAll(".game-block");
@@ -13114,6 +13133,7 @@ function nextRow() {
     gameBlockEls.forEach((gameBlockEl) => {
       if (!gameBlockEl.classList.contains("filled")) {
         isFilled = false;
+        addPopup("Not enough letters");
       }
     });
     if (isFilled) return true;
@@ -13129,6 +13149,7 @@ function nextRow() {
     if (guessList.includes(str.toLowerCase())) {
       return true;
     }
+    addPopup("Not in word list");
     return false;
   }
 }
@@ -13191,4 +13212,25 @@ function checkPreviousRow() {
       });
     }
   }
+}
+
+function addPopup(text) {
+  const popupEl = document.querySelector(".pop-up");
+  popupEl.classList.remove("inactive");
+  const popupTextEl = document.querySelector(".pop-up>h1");
+  popupTextEl.innerText = text;
+  setTimeout(() => {
+    popupEl.classList.add("inactive");
+  }, 1000);
+}
+
+function isWin() {
+  let isWin = true;
+  const lastRowEls = document.querySelectorAll(".last-row");
+  lastRowEls.forEach((lastRowEl) => {
+    if (!lastRowEl.classList.contains("correct")) {
+      isWin = false;
+    }
+  });
+  return isWin;
 }

@@ -34,6 +34,28 @@ $keyboard-key-miss: #3a3a3c;
       justify-content: space-around;
       height: 100vh;
 
+      .pop-up {
+        position: absolute;
+        top: 20px;
+        padding: 4px 15px;
+        background-color: white;
+        border-radius: 5px;
+        max-width: 160px;
+        opacity: 100%;
+        transition: opacity 0.3s;
+
+        h1 {
+          color: black;
+          font-weight: 550;
+          font-size: 15px;
+          word-wrap: break-word;
+        }
+      }
+
+      .pop-up.inactive {
+        opacity: 0%;
+      }
+
       .game-board {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -52,7 +74,7 @@ $keyboard-key-miss: #3a3a3c;
           max-width: 400%;
           max-height: 400%;
           font-size: 2rem;
-          font-weight: bold;
+          font-weight: bolder;
           border-radius: 2px;
         }
 
