@@ -5,6 +5,10 @@
   font-family: "Source Sans Pro", sans-serif;
   color: rgb(255, 255, 255);
   font-size: 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 * body {
   background-color: #121213;
@@ -96,6 +100,7 @@
   height: 60px;
   border-radius: 3px;
   border: none;
+  cursor: pointer;
 }
 * body .container .keyboard .keyboard-line .keyboard-symbols {
   width: 3.35em;

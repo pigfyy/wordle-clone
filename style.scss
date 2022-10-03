@@ -18,6 +18,7 @@ $keyboard-key-miss: #3a3a3c;
   font-family: "Source Sans Pro", sans-serif;
   color: $text-color;
   font-size: 20px;
+  user-select: none;
 
   body {
     background-color: $background-color;
@@ -118,6 +119,7 @@ $keyboard-key-miss: #3a3a3c;
             height: 60px;
             border-radius: 3px;
             border: none;
+            cursor: pointer;
           }
           .keyboard-symbols {
             width: 3.35em;
