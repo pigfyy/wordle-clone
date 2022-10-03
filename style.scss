@@ -2,9 +2,14 @@ $background-color: #121213;
 $text-color: rgb(255, 255, 255);
 $border-color-active: #565758;
 $border-color-inactive: #3a3a3c;
+
 $color-correct: #538d4e;
 $color-present: #c9b458;
 $color-miss: #3a3a3c;
+
+$keyboard-key-present: #b59f3b;
+$keyboard-key-correct: #538d4e;
+$keyboard-key-miss: #3a3a3c;
 
 * {
   margin: 0;
@@ -94,6 +99,15 @@ $color-miss: #3a3a3c;
           }
           .keyboard-symbols {
             width: 3.35em;
+          }
+          .key-correct {
+            background-color: $keyboard-key-correct;
+          }
+          .key-present {
+            background-color: $keyboard-key-present;
+          }
+          .key-miss {
+            background-color: $keyboard-key-miss;
           }
         }
         [data-row="second-row"] {

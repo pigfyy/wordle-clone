@@ -81,6 +81,15 @@
 * body .container .keyboard .keyboard-line .keyboard-symbols {
   width: 3.35em;
 }
+* body .container .keyboard .keyboard-line .key-correct {
+  background-color: #538d4e;
+}
+* body .container .keyboard .keyboard-line .key-present {
+  background-color: #b59f3b;
+}
+* body .container .keyboard .keyboard-line .key-miss {
+  background-color: #3a3a3c;
+}
 * body .container .keyboard [data-row=second-row] {
   width: 90%;
 }/*# sourceMappingURL=style.css.map */
