@@ -12957,6 +12957,7 @@ guessList = guessList.concat(wordList);
 getWord();
 function getWord() {
   word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
+  word = "SPILT";
 }
 console.log(word);
 
@@ -13140,7 +13141,7 @@ function checkPreviousRow() {
 
   firstCheck();
   function firstCheck() {
-    const previousRowEls = document.querySelectorAll(".miss");
+    const previousRowEls = document.querySelectorAll(".miss.last-row");
     previousRowEls.forEach((previousRowEl) => {
       const letter = previousRowEl.innerText;
       if (wordArr[previousRowEl.getAttribute("game-col") - 1] == letter) {
@@ -13153,7 +13154,7 @@ function checkPreviousRow() {
 
   secondCheck();
   function secondCheck() {
-    const previousRowEls = document.querySelectorAll(".miss");
+    const previousRowEls = document.querySelectorAll(".miss.last-row");
     previousRowEls.forEach((previousRowEl) => {
       const letter = previousRowEl.innerText;
       if (wordArr.includes(letter)) {
