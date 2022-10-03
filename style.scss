@@ -100,14 +100,14 @@ $keyboard-key-miss: #3a3a3c;
           .keyboard-symbols {
             width: 3.35em;
           }
-          .key-correct {
-            background-color: $keyboard-key-correct;
+          .key-miss {
+            background-color: $keyboard-key-miss;
           }
           .key-present {
             background-color: $keyboard-key-present;
           }
-          .key-miss {
-            background-color: $keyboard-key-miss;
+          .key-correct {
+            background-color: $keyboard-key-correct;
           }
         }
         [data-row="second-row"] {

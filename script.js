@@ -13171,17 +13171,15 @@ function checkPreviousRow() {
 
   addColor();
   function addColor() {
-    const presentEls = document.querySelectorAll(".present");
-    presentEls.forEach((presentEl) => {
-      add(presentEl.innerText, "present");
-    });
-    const missEls = document.querySelectorAll(".miss");
-    missEls.forEach((missEl) => {
-      add(missEl.innerText, "miss");
-    });
-    const correctEls = document.querySelectorAll(".correct");
-    correctEls.forEach((correctEl) => {
-      add(correctEl.innerText, "correct");
+    const lastRowEls = document.querySelectorAll(".last-row");
+    lastRowEls.forEach((lastRowEl) => {
+      if (lastRowEl.classList.contains("correct")) {
+        add(lastRowEl.innerText, "correct");
+      } else if (lastRowEl.classList.contains("present")) {
+        add(lastRowEl.innerText, "present");
+      } else if (lastRowEl.classList.contains("miss")) {
+        add(lastRowEl.innerText, "miss");
+      }
     });
 
     function add(letter, state) {
