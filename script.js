@@ -12957,7 +12957,6 @@ guessList = guessList.concat(wordList);
 getWord();
 function getWord() {
   word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
-  word = "SPILT";
 }
 console.log(word);
 
