@@ -12958,7 +12958,6 @@ getWord();
 function getWord() {
   word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
 }
-console.log(word);
 
 makeKeyboard();
 function makeKeyboard() {
@@ -13134,6 +13133,7 @@ function nextRow() {
       if (!gameBlockEl.classList.contains("filled")) {
         isFilled = false;
         addPopup("Not enough letters");
+        shakeRow();
       }
     });
     if (isFilled) return true;
@@ -13150,6 +13150,7 @@ function nextRow() {
       return true;
     }
     addPopup("Not in word list");
+    shakeRow();
     return false;
   }
 }
@@ -13233,4 +13234,14 @@ function isWin() {
     }
   });
   return isWin;
+}
+
+function shakeRow() {
+  const currentRowEls = document.querySelectorAll(".current-row");
+  currentRowEls.forEach((currentRowEl) => {
+    currentRowEl.classList.add("shake");
+    setTimeout(() => {
+      currentRowEl.classList.remove("shake");
+    }, 1000);
+  });
 }
