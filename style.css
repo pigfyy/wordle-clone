@@ -50,8 +50,10 @@
   grid-gap: 5px;
   aspect-ratio: 1/1.1;
   width: 95%;
-  min-height: 400px;
+  height: auto;
+  max-height: 440px;
   max-width: 400px;
+  padding: 5px;
 }
 * body .container .game-board .game-block {
   aspect-ratio: 1/1;

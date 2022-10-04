@@ -63,8 +63,10 @@ $keyboard-key-miss: #3a3a3c;
         grid-gap: 5px;
         aspect-ratio: 1/1.1;
         width: 95%;
-        min-height: 400px;
+        height: auto;
+        max-height: 440px;
         max-width: 400px;
+        padding: 5px;
 
         .game-block {
           aspect-ratio: 1/1;
